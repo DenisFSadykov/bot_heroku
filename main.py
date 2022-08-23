@@ -12,7 +12,7 @@ from aiogram.utils.executor import start_webhook
 
 
 
-loop = asyncio.get_event_loop()
+# loop = asyncio.get_event_loop()
 bot = Bot(token=config.token, parse_mode='MarkdownV2')
 dp = Dispatcher(bot, loop=loop)
 
@@ -4495,7 +4495,6 @@ if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO)
     start_webhook(
         dispatcher=dp,
-        loop=loop,
         webhook_path=config.WEBHOOK_PATH,
         skip_updates=True,
         on_startup=on_startup,
@@ -4503,5 +4502,6 @@ if __name__ == '__main__':
         host=config.WEBAPP_HOST,
         port=config.WEBAPP_PORT,
     )
-
-
+    
+#     loop=loop,
+    
