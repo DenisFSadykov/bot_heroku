@@ -11,10 +11,10 @@ import logging
 from aiogram.utils.executor import start_webhook
 
 
-
+# loop=loop
 # loop = asyncio.get_event_loop()
 bot = Bot(token=config.token, parse_mode='MarkdownV2')
-dp = Dispatcher(bot, loop=loop)
+dp = Dispatcher(bot)
 
 
 PRICES = [
