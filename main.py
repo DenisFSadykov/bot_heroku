@@ -4343,7 +4343,6 @@ def catch_exceptions(cancel_on_failure=False):
 # Проверяем и напоминаем о завершении подписки
 @catch_exceptions(cancel_on_failure=True)
 async def repeat():
-    print('start')
     with Vedis(config.db_file) as db:
         try:
             for i in db.Set('Pay'):
