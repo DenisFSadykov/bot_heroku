@@ -4370,7 +4370,6 @@ async def repeat():
                     except:
                         db.Set('Blocked').add(i.decode())
                 elif date.today() >= (db_date + timedelta(days=1)):
-                    print('23')
                     try:
                         await bot.send_message(i.decode(), 'Ваша подписка закончилась\. Если захотите, можете подписаться снова в любой момент', reply_markup=get_jamp_mainmenu())
                         if i.decode() in db.Set('Blocked'):
@@ -4405,7 +4404,6 @@ async def repeat():
                 datetime_str_month = datetime.strptime(str(db[n.decode() + 'pay_end'].decode()), "%Y-%m-%d")
                 db_date = datetime.date(datetime_str_month)
                 if date.today() >= (db_date + timedelta(days=1)): # Если текущая дата равна (дате в базе + 1 день)
-                    print('45')
                     try:
                         await bot.send_message(n.decode(), 'Ваша подписка закончилась\. Если захотите, можете подписаться снова в любой момент', reply_markup=get_jamp_mainmenu())
                         if n.decode() in db.Set('Blocked'):
@@ -4449,7 +4447,6 @@ async def subscription_no(call: types.CallbackQuery):
                     db.Set('Month').remove(user_id)  # удаляем из множества "Месяц"
                 except:
                     pass
-
                 try:
                     db.Set('Year').remove(user_id)
                 except:
