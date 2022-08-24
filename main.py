@@ -4324,24 +4324,24 @@ async def process_successful_payment(message: types.Message):
 
 
 # декоратор для отлова исключений повторяющихся действий
-def catch_exceptions(cancel_on_failure=False):
-    def catch_exceptions_decorator(job_func):
-        @functools.wraps(job_func)
-        def wrapper(*args, **kwargs):
-            try:
-                return job_func(*args, **kwargs)
-            except:
-                import traceback
-                print(traceback.format_exc())
-                if cancel_on_failure:
-                    return aioschedule.CancelJob
+# def catch_exceptions(cancel_on_failure=False):
+#     def catch_exceptions_decorator(job_func):
+#         @functools.wraps(job_func)
+#         def wrapper(*args, **kwargs):
+#             try:
+#                 return job_func(*args, **kwargs)
+#             except:
+#                 import traceback
+#                 print(traceback.format_exc())
+#                 if cancel_on_failure:
+#                     return aioschedule.CancelJob
 
-        return wrapper
+#         return wrapper
 
-    return catch_exceptions_decorator
+#     return catch_exceptions_decorator
 
-# Проверяем и напоминаем о завершении подписки
-@catch_exceptions(cancel_on_failure=True)
+# # Проверяем и напоминаем о завершении подписки
+# @catch_exceptions(cancel_on_failure=True)
 async def repeat():
     with Vedis(config.db_file) as db:
         try:
@@ -4478,11 +4478,13 @@ async def scheduler():
         await aioschedule.run_pending()
         await asyncio.sleep(1)
 
-async def on_startup(_):
+async def on_startup(dp):
     await asyncio.create_task(scheduler())
-    await bot.set_webhook(config.WEBHOOK_URL, drop_pending_updates=True)
+    await bot.set_webhook(config.WEBHOOK_URL)
 
-async def on_shutdown(_):
+# drop_pending_updates=True
+    
+async def on_shutdown(dp):
     await bot.delete_webhook()
 
 logging.basicConfig(level=logging.INFO)
