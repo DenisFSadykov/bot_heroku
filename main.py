@@ -4478,13 +4478,13 @@ async def scheduler():
         await aioschedule.run_pending()
         await asyncio.sleep(1)
 
-async def on_startup(dp):
+async def on_startup(_):
     await asyncio.create_task(scheduler())
     await bot.set_webhook(config.WEBHOOK_URL)
 
 # drop_pending_updates=True
     
-async def on_shutdown(dp):
+async def on_shutdown(_):
     await bot.delete_webhook()
 
 logging.basicConfig(level=logging.INFO)
