@@ -4479,7 +4479,7 @@ async def scheduler():
         await asyncio.sleep(1)
 
 async def on_startup(_):
-    asyncio.create_task(scheduler())
+    await asyncio.create_task(scheduler())
     await bot.set_webhook(config.WEBHOOK_URL, drop_pending_updates=True)
 
 async def on_shutdown(_):
