@@ -4495,7 +4495,7 @@ if __name__ == '__main__':
         on_startup=on_startup,
         on_shutdown=on_shutdown,
         host=config.WEBAPP_HOST,
-        port=config.WEBAPP_PORT,
+        port=config.WEBAPP_PORT
     )
     
 #     loop=loop,
