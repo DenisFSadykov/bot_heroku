@@ -4488,10 +4488,9 @@ async def on_startup(_):
 async def on_shutdown(_):
     await bot.delete_webhook()
 
-
+logging.basicConfig(level=logging.INFO)
 
 if __name__ == '__main__':
-    logging.basicConfig(level=logging.INFO)
     start_webhook(
         dispatcher=dp,
         webhook_path=config.WEBHOOK_PATH,
