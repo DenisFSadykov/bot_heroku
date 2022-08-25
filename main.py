@@ -4471,16 +4471,16 @@ async def subscription_no(call: types.CallbackQuery):
 
 
 
-# запускаем повторяющийся процесс (проверку окончания подписки)
-async def scheduler():
-    aioschedule.every().day.at("10:00").do(repeat)
-    while True:
-        await aioschedule.run_pending()
-        await asyncio.sleep(1)
+# # запускаем повторяющийся процесс (проверку окончания подписки)
+# async def scheduler():
+#     aioschedule.every().day.at("10:00").do(repeat)
+#     while True:
+#         await aioschedule.run_pending()
+#         await asyncio.sleep(1)
 
 async def on_startup(_):
-    asyncio.create_task(scheduler())
-    await bot.set_webhook(config.WEBHOOK_URL)
+#     asyncio.create_task(scheduler())
+    await bot.set_webhook(config.WEBHOOK_URL, drop_pending_updates=True)
 
 # drop_pending_updates=True
     
